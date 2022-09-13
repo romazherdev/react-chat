@@ -1,3 +1,9 @@
+.page {
+    height: 100%;
+    display: grid;
+    place-items: center;
+}
+
 .form {
     max-width: 100%;
     width: 280px;
