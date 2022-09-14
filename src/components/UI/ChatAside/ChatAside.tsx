@@ -13,12 +13,12 @@ import MemberList from '../MemberList/MemberList';
 const ChatAside = (): JSX.Element => {
     const { data: members } = useMembers();
     const { mutate: updateMember } = useMutation(['updateMember'], patchMemberRequest);
-    const { user, setUser } = useContext(UserContext);
+    const { user, logout } = useContext(UserContext);
     const navigate = useNavigate();
 
     const handleLogout = () => {
         updateMember({ id: user.id, active: false });
-        setUser(null as any);
+        logout();
         navigate('/login');
     };
 

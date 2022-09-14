@@ -5,6 +5,7 @@ import { User } from '../models';
 export interface UserContextProps {
     user: User;
     setUser: (user: User) => void;
+    logout: () => void;
 }
 
 // TODO: Figure out how to supply a default value

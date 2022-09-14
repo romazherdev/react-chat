@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 import { User } from './models';
 import { UserContext } from './contexts/UserContext';
-import HomePage from './components/pages/home/HomePage';
-import LoginPage from './components/pages/login/LoginPage';
+import HomePage from './components/pages/Home/HomePage';
+import LoginPage from './components/pages/Login/LoginPage';
 
 import styles from './App.module.css';
 
@@ -20,8 +20,11 @@ function App() {
     localStorage.setItem('user', JSON.stringify(user));
   }, [user]);
 
+  // null as any is a temporary workaround
+  const logout = useCallback(() => setUser(null as any), [setUser]);
+
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ user, setUser, logout }}>
       <div className={styles.app}>
         <Routes>
           <Route
