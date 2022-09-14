@@ -4,6 +4,10 @@
     border-radius: 1rem;
 }
 
+.messageListItemSelf {
+    align-self: flex-end;
+}
+
 .messageListItemHeader {
     display: flex;
     align-items: center;

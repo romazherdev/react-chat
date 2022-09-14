@@ -3,7 +3,7 @@ import React from 'react';
 import { User } from '../models';
 
 export interface UserContextProps {
-    user: User | null;
+    user: User;
     setUser: (user: User) => void;
 }
 

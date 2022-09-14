@@ -1,5 +1,6 @@
 import { useState, ChangeEvent, FormEvent, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -19,7 +20,7 @@ export const LoginPage = (): JSX.Element => {
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
-        userCtx.setUser({ username });
+        userCtx.setUser({ username, id: uuidv4() });
         navigate('/');
     };
 

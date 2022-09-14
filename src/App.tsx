@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import { User } from './models';
 import { UserContext } from './contexts/UserContext';
-import ChatPage from './components/pages/chat/ChatPage';
+import HomePage from './components/pages/home/HomePage';
 import LoginPage from './components/pages/login/LoginPage';
 
 import styles from './App.module.css';
@@ -30,7 +30,7 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={user ? <ChatPage /> : <Navigate to="/login" replace />}
+              element={user ? <HomePage /> : <Navigate to="/login" replace />}
             />
             <Route path="/login" element={<LoginPage />} />
             <Route path="*" element={<h1>404</h1>} />

@@ -1,25 +1,24 @@
-import { createRef, FormEvent, useEffect, useState } from 'react';
+import { createRef, FormEvent, ChangeEvent, useContext, useEffect, useState } from 'react';
 
-import classNames from 'classnames';
+import { v4 as uuidv4 } from 'uuid';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 
 import { Message } from '../../../models/message';
 
-import styles from './ChatPage.module.css';
+import styles from './HomePage.module.css';
 import MessageList from '../../UI/MessageList/MessageList';
 import MessageListItem from '../../UI/MessageListItem/MessageListItem';
 import ChatAside from '../../UI/ChatAside/ChatAside';
+import { getMessages, sendMessage } from '../../../api';
+import { UserContext } from '../../../contexts/UserContext';
 
-const ChatPage = (): JSX.Element => {
-    const { data: messages, isLoading } = useQuery<Message[]>(
-        ['messages'],
-        () => fetch('http://localhost:4000/messages').then(res => res.json()),
-        // {
-        //     refetchInterval: 500,
-        // }
-    );
+const HomePage = (): JSX.Element => {
+    const [text, setText] = useState('');
+    const { data: messages, refetch } = useQuery<Message[]>(['messages'], getMessages, { refetchInterval: 1000 });
+    const mutation = useMutation(sendMessage);
+    const { user } = useContext(UserContext);
     const chatRef = createRef<HTMLElement>();
 
     useEffect(() => {
@@ -28,6 +27,18 @@ const ChatPage = (): JSX.Element => {
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
+        mutation.mutate({
+            id: uuidv4(),
+            text,
+            author: user,
+            timestamp: Date.now(),
+        });
+        refetch();
+        setText('');
+    };
+
+    const handleTextChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setText(event.target.value);
     };
 
     return (
@@ -36,9 +47,11 @@ const ChatPage = (): JSX.Element => {
                 <MessageList>
                     {messages?.map(msg => (
                         <MessageListItem
+                            key={msg.id}
                             author={msg.author.username}
                             text={msg.text}
                             timestamp={msg.timestamp}
+                            self={msg.author.id === user.id}
                         />
                     ))}
                 </MessageList>
@@ -51,6 +64,8 @@ const ChatPage = (): JSX.Element => {
                     type="text"
                     placeholder="Type your message"
                     required
+                    value={text}
+                    onChange={handleTextChange}
                 />
 
                 <Button type="submit" variant="light">Send</Button>
@@ -61,4 +76,4 @@ const ChatPage = (): JSX.Element => {
     );
 };
 
-export default ChatPage;
+export default HomePage;
