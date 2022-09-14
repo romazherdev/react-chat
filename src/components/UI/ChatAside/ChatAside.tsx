@@ -5,10 +5,12 @@ import { useMutation } from '@tanstack/react-query';
 
 import { updateMemberRequest } from '../../../api';
 import { UserContext } from '../../../contexts/UserContext';
+import { useMembers } from '../../../hooks';
 
 import styles from './ChatAside.module.css';
 
 const ChatAside = (): JSX.Element => {
+    const { data: members } = useMembers();
     const { mutate: updateMember } = useMutation(['updateMember'], updateMemberRequest);
     const { user, setUser } = useContext(UserContext);
     const navigate = useNavigate();

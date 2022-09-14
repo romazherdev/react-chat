@@ -2,14 +2,13 @@ import { createRef, FormEvent, ChangeEvent, useContext, useEffect, useState } fr
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { useMutation, useQuery } from '@tanstack/react-query';
-
-import { Message } from '../../../models/message';
+import { useMutation } from '@tanstack/react-query';
 
 import MessageList from '../../UI/MessageList/MessageList';
 import MessageListItem from '../../UI/MessageListItem/MessageListItem';
-import { getMessagesRequest, sendMessageRequest } from '../../../api';
+import { sendMessageRequest } from '../../../api';
 import { UserContext } from '../../../contexts/UserContext';
+import { useMessages } from '../../../hooks';
 
 import styles from './Chat.module.css';
 
@@ -17,13 +16,13 @@ export const Chat = (): JSX.Element => {
     const chatRef = createRef<HTMLElement>();
 
     const [text, setText] = useState('');
-    const { data: messages, refetch } = useQuery<Message[]>(['messages'], getMessagesRequest, { refetchInterval: 1000 });
-    const mutation = useMutation(sendMessageRequest);
+    const { data: messages, refetch } = useMessages();
+    const { mutate: sendMessage } = useMutation(sendMessageRequest);
     const { user } = useContext(UserContext);
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
-        mutation.mutate({
+        sendMessage({
             text,
             author: user,
             timestamp: Date.now(),

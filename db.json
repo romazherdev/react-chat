@@ -19,6 +19,16 @@
       },
       "timestamp": 1663185220213,
       "id": "1049caf5-0e67-4380-803c-bf17d7a4820c"
+    },
+    {
+      "text": "What's up, Sarah?",
+      "author": {
+        "username": "Johnny",
+        "id": "028f1567-ca44-4a66-9825-643afe9fc46e",
+        "active": false
+      },
+      "timestamp": 1663185851584,
+      "id": "f64f3f01-04cc-4fad-9de3-892738a0e925"
     }
   ],
   "members": [
