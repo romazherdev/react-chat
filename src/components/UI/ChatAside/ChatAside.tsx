@@ -3,15 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import { useMutation } from '@tanstack/react-query';
 
-import { updateMemberRequest } from '../../../api';
+import { patchMemberRequest } from '../../../api';
 import { UserContext } from '../../../contexts/UserContext';
 import { useMembers } from '../../../hooks';
 
 import styles from './ChatAside.module.css';
+import MemberList from '../MemberList/MemberList';
 
 const ChatAside = (): JSX.Element => {
     const { data: members } = useMembers();
-    const { mutate: updateMember } = useMutation(['updateMember'], updateMemberRequest);
+    const { mutate: updateMember } = useMutation(['updateMember'], patchMemberRequest);
     const { user, setUser } = useContext(UserContext);
     const navigate = useNavigate();
 
@@ -27,11 +28,7 @@ const ChatAside = (): JSX.Element => {
                 <Button type="button" variant="light" onClick={handleLogout}>Logout</Button>
             </header>
 
-            <ul className={styles.memberList}>
-                <li className={styles.memberListItem}>Member 1</li>
-                <li className={styles.memberListItem}>Member 2</li>
-                <li className={styles.memberListItem}>Member 3</li>
-            </ul>
+            {members ? <MemberList members={members} /> : null}
         </aside>
     );
 }

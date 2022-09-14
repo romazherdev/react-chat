@@ -1,45 +1,29 @@
 {
   "messages": [
     {
-      "text": "test",
+      "text": "Test",
+      "timestamp": 1663186442234,
       "author": {
-        "username": "Johnny",
         "id": "028f1567-ca44-4a66-9825-643afe9fc46e",
-        "active": false
+        "username": "Johnny"
       },
-      "timestamp": 1663185164207,
-      "id": "dd621717-21ae-46fb-9fe6-06074d65dd1f"
-    },
-    {
-      "text": "Hi, Johnny!",
-      "author": {
-        "username": "Sarah",
-        "id": "006f078f-5ee9-4c00-ba3c-ebe49d51454f",
-        "active": false
-      },
-      "timestamp": 1663185220213,
-      "id": "1049caf5-0e67-4380-803c-bf17d7a4820c"
-    },
-    {
-      "text": "What's up, Sarah?",
-      "author": {
-        "username": "Johnny",
-        "id": "028f1567-ca44-4a66-9825-643afe9fc46e",
-        "active": false
-      },
-      "timestamp": 1663185851584,
-      "id": "f64f3f01-04cc-4fad-9de3-892738a0e925"
+      "id": "30b52fd7-bce0-4d60-b9b9-2ffa619c26aa"
     }
   ],
   "members": [
     {
       "username": "Johnny",
       "id": "028f1567-ca44-4a66-9825-643afe9fc46e",
-      "active": false
+      "active": true
     },
     {
       "username": "Sarah",
       "id": "006f078f-5ee9-4c00-ba3c-ebe49d51454f",
+      "active": false
+    },
+    {
+      "username": "Vin Diesel",
+      "id": "aefcc4d1-af1a-4f96-b47f-bc54ac0ecb53",
       "active": false
     }
   ]

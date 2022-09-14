@@ -24,8 +24,11 @@ export const Chat = (): JSX.Element => {
         event.preventDefault();
         sendMessage({
             text,
-            author: user,
             timestamp: Date.now(),
+            author: {
+                id: user.id,
+                username: user.username,
+            },
         });
         setText('');
         refetch();

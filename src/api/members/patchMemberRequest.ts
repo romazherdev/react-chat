@@ -1,6 +1,6 @@
 import { User } from '../../models';
 
-export function updateMemberRequest({ id, ...payload }: Pick<User, 'active' | 'id'>): Promise<void> {
+export function patchMemberRequest({ id, ...payload }: Pick<User, 'active' | 'id'>): Promise<User> {
     const body = JSON.stringify(payload);
 
     return fetch(`${import.meta.env.CHAT_API_URL}/members/${id}`, {

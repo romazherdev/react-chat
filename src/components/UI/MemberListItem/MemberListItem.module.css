@@ -1,0 +1,14 @@
+.memberListItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.5rem;
+}
+
+.memberListItemOffline {
+    opacity: 0.5;
+}
+
+.memberListItem:not(:last-child) {
+    border-bottom: 1px solid var(--bs-gray-800);
+}
