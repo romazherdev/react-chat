@@ -1,23 +1,36 @@
 {
   "messages": [
     {
-      "id": "d784b3bc-c2b4-43c3-b044-030c1d746fe4",
-      "text": "Hello!",
+      "text": "test",
       "author": {
         "username": "Johnny",
-        "id": "028f1567-ca44-4a66-9825-643afe9fc46e"
+        "id": "028f1567-ca44-4a66-9825-643afe9fc46e",
+        "active": false
       },
-      "timestamp": 1663180685713
+      "timestamp": 1663185164207,
+      "id": "dd621717-21ae-46fb-9fe6-06074d65dd1f"
     },
     {
-      "id": "c90eb1ce-7e96-49f6-b973-6ee72b0b272c",
       "text": "Hi, Johnny!",
       "author": {
-        "username": "Phill",
-        "id": "8a18100f-ba57-4de6-be51-31805439ed56"
+        "username": "Sarah",
+        "id": "006f078f-5ee9-4c00-ba3c-ebe49d51454f",
+        "active": false
       },
-      "timestamp": 1663180982096
+      "timestamp": 1663185220213,
+      "id": "1049caf5-0e67-4380-803c-bf17d7a4820c"
     }
   ],
-  "members": []
+  "members": [
+    {
+      "username": "Johnny",
+      "id": "028f1567-ca44-4a66-9825-643afe9fc46e",
+      "active": false
+    },
+    {
+      "username": "Sarah",
+      "id": "006f078f-5ee9-4c00-ba3c-ebe49d51454f",
+      "active": false
+    }
+  ]
 }

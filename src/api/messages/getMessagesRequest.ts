@@ -1,6 +1,6 @@
 import { Message } from '../../models';
 
-export function getMessages(): Promise<Message[]> {
+export function getMessagesRequest(): Promise<Message[]> {
     const params = new URLSearchParams({
         _sort: 'timestamp',
         _order: 'desc',

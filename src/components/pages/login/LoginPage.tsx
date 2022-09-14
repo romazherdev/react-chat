@@ -1,18 +1,26 @@
-import { useState, ChangeEvent, FormEvent, useContext } from 'react';
+import { useState, ChangeEvent, FormEvent, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
-
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { useMutation } from '@tanstack/react-query';
 
 import { UserContext } from '../../../contexts/UserContext';
+import { loginOrRegisterRequest } from '../../../api';
 
 import styles from './LoginPage.module.css';
 
 export const LoginPage = (): JSX.Element => {
+    const { mutate: loginOrRegister, data: user } = useMutation(['loginOrRegister'], loginOrRegisterRequest);
     const [username, setUsername] = useState('');
-    const userCtx = useContext(UserContext);
+    const { setUser } = useContext(UserContext);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (user) {
+            setUser(user);
+            navigate('/');
+        }
+    }, [user]);
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         setUsername(event.target.value);
@@ -20,8 +28,7 @@ export const LoginPage = (): JSX.Element => {
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
-        userCtx.setUser({ username, id: uuidv4() });
-        navigate('/');
+        loginOrRegister(username);
     };
 
     return (

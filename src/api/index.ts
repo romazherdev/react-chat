@@ -1,2 +1,7 @@
-export * from './messages/getMessages';
-export * from './messages/sendMessage';
+export * from './members/addMemberRequest';
+export * from './members/getMembersRequest';
+export * from './members/loginOrRegisterRequest';
+export * from './members/updateMemberRequest';
+
+export * from './messages/getMessagesRequest';
+export * from './messages/sendMessageRequest';

@@ -1,15 +1,20 @@
 import { useContext } from 'react';
-import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import { useMutation } from '@tanstack/react-query';
+
+import { updateMemberRequest } from '../../../api';
 import { UserContext } from '../../../contexts/UserContext';
 
 import styles from './ChatAside.module.css';
 
 const ChatAside = (): JSX.Element => {
-    const { setUser } = useContext(UserContext);
+    const { mutate: updateMember } = useMutation(['updateMember'], updateMemberRequest);
+    const { user, setUser } = useContext(UserContext);
     const navigate = useNavigate();
 
     const handleLogout = () => {
+        updateMember({ id: user.id, active: false });
         setUser(null as any);
         navigate('/login');
     };
