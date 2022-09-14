@@ -1,33 +1,64 @@
+import { createRef, FormEvent, useEffect, useState } from 'react';
+
+import classNames from 'classnames';
 import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import { useQuery } from '@tanstack/react-query';
+
+import { Message } from '../../../models/message';
 
 import styles from './ChatPage.module.css';
+import MessageList from '../../UI/MessageList/MessageList';
+import MessageListItem from '../../UI/MessageListItem/MessageListItem';
+import ChatAside from '../../UI/ChatAside/ChatAside';
 
-const ChatPage = (): JSX.Element => (
-    <div className={styles.page}>
-        <main className={styles.chat}>
-            
-        </main>
+const ChatPage = (): JSX.Element => {
+    const { data: messages, isLoading } = useQuery<Message[]>(
+        ['messages'],
+        () => fetch('http://localhost:4000/messages').then(res => res.json()),
+        // {
+        //     refetchInterval: 500,
+        // }
+    );
+    const chatRef = createRef<HTMLElement>();
 
-        <aside className={styles.aside}>
-            <header>
-                <button>Logout</button>
-            </header>
-            <ul className={styles.memberList}>
-                <li className={styles.memberListItem}>Member 1</li>
-                <li className={styles.memberListItem}>Member 2</li>
-                <li className={styles.memberListItem}>Member 3</li>
-            </ul>
-        </aside>
+    useEffect(() => {
+        chatRef.current?.scrollTo(0, chatRef.current?.scrollHeight);
+    }, []);
 
-        <Form className={styles.inputArea}>
-            <Form.Control
-                className={styles.inputField}
-                autoComplete="off"
-                type="text"
-                placeholder="Type your message"
-            />
-        </Form>
-    </div>
-);
+    const handleSubmit = (event: FormEvent) => {
+        event.preventDefault();
+    };
+
+    return (
+        <div className={styles.page}>
+            <main ref={chatRef} className={styles.chat}>
+                <MessageList>
+                    {messages?.map(msg => (
+                        <MessageListItem
+                            author={msg.author.username}
+                            text={msg.text}
+                            timestamp={msg.timestamp}
+                        />
+                    ))}
+                </MessageList>
+            </main>
+
+            <Form className={styles.inputArea} onSubmit={handleSubmit}>
+                <Form.Control
+                    className={styles.inputField}
+                    autoComplete="off"
+                    type="text"
+                    placeholder="Type your message"
+                    required
+                />
+
+                <Button type="submit" variant="light">Send</Button>
+            </Form>
+
+            <ChatAside />
+        </div>
+    );
+};
 
 export default ChatPage;

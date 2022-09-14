@@ -1,0 +1,17 @@
+.messageListItem {
+    padding: 1rem;
+    background-color: var(--bs-dark);
+    border-radius: 1rem;
+}
+
+.messageListItemHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    color: var(--bs-info);
+}
+
+.messageListItemBody {
+    margin: 0;
+}

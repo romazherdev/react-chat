@@ -3,7 +3,7 @@
     background-color: var(--bs-gray-800);
     display: grid;
     color: var(--bs-white);
-    grid-template-columns: 1fr 200px;
+    grid-template-columns: 1fr minmax(200px, 20%);
     grid-template-rows: 1fr 80px;
     grid-template-areas:
         "chat aside"
@@ -12,25 +12,21 @@
 
 .chat {
     grid-area: chat;
+    padding: 1rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: grid;
 }
-
-.aside {
-    grid-area: aside;
-    border-inline-start: 1px solid var(--bs-gray-700);
-    background-color: var(--bs-gray-900);
-}
-
-.memberList {}
-
-.memberListItem {}
 
 .inputArea {
     grid-area: input;
     padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .inputField {
     /* background-color: var(--bs-gray-600) !important; */
     /* color: var(--bs-white); */
-    border-radius: 0.75rem;
 }

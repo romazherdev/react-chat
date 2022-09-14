@@ -1,3 +1,13 @@
 {
-    "rooms": []
+    "messages": [
+        {
+            "id": "1",
+            "text": "Here's Johnny!",
+            "author": {
+                "username": "Johnny"
+            },
+            "timestamp": 1663160519705
+        }
+    ],
+    "members": []
 }

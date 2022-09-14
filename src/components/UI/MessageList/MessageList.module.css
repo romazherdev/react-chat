@@ -1,0 +1,9 @@
+.messageList {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 1.5rem;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
