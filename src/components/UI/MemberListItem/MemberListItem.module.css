@@ -5,6 +5,10 @@
     padding-bottom: 0.5rem;
 }
 
+.memberListItemSelf {
+    color: var(--bs-info);
+}
+
 .memberListItemOffline {
     opacity: 0.5;
 }

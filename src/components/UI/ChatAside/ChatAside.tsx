@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import { useMutation } from '@tanstack/react-query';
@@ -25,7 +25,7 @@ const ChatAside = (): JSX.Element => {
     return (
         <aside className={styles.aside}>
             <header className={styles.asideHeader}>
-                <Button type="button" variant="light" onClick={handleLogout}>Logout</Button>
+                <Button type="button" variant="danger" onClick={handleLogout}>Logout</Button>
             </header>
 
             {members ? <MemberList members={members} /> : null}

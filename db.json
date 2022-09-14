@@ -8,6 +8,15 @@
         "username": "Johnny"
       },
       "id": "30b52fd7-bce0-4d60-b9b9-2ffa619c26aa"
+    },
+    {
+      "text": "Test",
+      "timestamp": 1663188113907,
+      "author": {
+        "id": "aefcc4d1-af1a-4f96-b47f-bc54ac0ecb53",
+        "username": "Vin Diesel"
+      },
+      "id": "89c455f6-9c0c-469c-9021-5bb0a1c29d4f"
     }
   ],
   "members": [
@@ -24,7 +33,7 @@
     {
       "username": "Vin Diesel",
       "id": "aefcc4d1-af1a-4f96-b47f-bc54ac0ecb53",
-      "active": false
+      "active": true
     }
   ]
 }
