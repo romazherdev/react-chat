@@ -11,16 +11,19 @@ export interface MemberListProps {
 
 export const MemberList = ({ members }: MemberListProps): JSX.Element => {
     const { user } = useContext(UserContext);
-    const [sortedMembers, setSortedMembers] = useState([...members]);
+    const [sortedMembers, setSortedMembers] = useState<User[]>([]);
 
     useEffect(() => {
-        setSortedMembers(
-            [...members].sort((a, b) => (
-                a.id === user.id && -1
-                || Number(b.active) - Number(a.active)
-                || a.username.localeCompare(b.username)
-            ))
-        );
+        // TODO: Extract into a separate mechanism + cover with tests
+        const selfFirst = (a: User) => Number(a.id === user.id && -1);
+        const activeFirst = (a: User, b: User) => Number(b.active) - Number(a.active);
+        const alphabeticalAsc = (a: User, b: User) => a.username.localeCompare(b.username);
+
+        const pipe = (...args: Array<(a: User, b: User) => number>) =>
+            (a: User, b: User) => args.reduce((res, compareFn) => res || compareFn(a, b), 0);
+        const prioritizedSort = pipe(selfFirst, activeFirst, alphabeticalAsc);
+
+        setSortedMembers([...members].sort(prioritizedSort));
     }, [members]);
 
     return (
