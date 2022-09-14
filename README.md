@@ -4,8 +4,8 @@ A React chat
 
 ## Features
 
-- [ ] Creating rooms for 2+ people
-- [ ] Joining rooms by room id
-- [ ] Text messaging
-- [ ] Having a unique nickname
-- [ ] Preserve chat history in memory
+- [ ] ~~Creating rooms for 2+ people~~ (skipped)
+- [ ] ~~Joining rooms by room id~~ (skipped)
+- [X] Text messaging
+- [X] Having a unique nickname
+- [X] Preserve chat history in db
