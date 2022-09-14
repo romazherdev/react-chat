@@ -1,22 +1,13 @@
 {
   "messages": [
     {
-      "text": "Test",
+      "text": "Here's Johnny!",
       "timestamp": 1663186442234,
       "author": {
         "id": "028f1567-ca44-4a66-9825-643afe9fc46e",
         "username": "Johnny"
       },
       "id": "30b52fd7-bce0-4d60-b9b9-2ffa619c26aa"
-    },
-    {
-      "text": "Test",
-      "timestamp": 1663188113907,
-      "author": {
-        "id": "aefcc4d1-af1a-4f96-b47f-bc54ac0ecb53",
-        "username": "Vin Diesel"
-      },
-      "id": "89c455f6-9c0c-469c-9021-5bb0a1c29d4f"
     }
   ],
   "members": [

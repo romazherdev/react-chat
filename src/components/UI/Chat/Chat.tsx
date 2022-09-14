@@ -16,9 +16,15 @@ export const Chat = (): JSX.Element => {
     const chatRef = createRef<HTMLElement>();
 
     const [text, setText] = useState('');
-    const { data: messages, refetch } = useMessages();
+    const { data: messages, refetch, isFetched: messagesFetched } = useMessages();
     const { mutate: sendMessage } = useMutation(sendMessageRequest);
     const { user } = useContext(UserContext);
+
+    useEffect(() => {
+        if (messagesFetched) {
+            chatRef.current?.scrollTo(0, chatRef.current?.scrollHeight);
+        }
+    }, [messagesFetched]);
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
@@ -37,10 +43,6 @@ export const Chat = (): JSX.Element => {
     const handleTextChange = (event: ChangeEvent<HTMLInputElement>) => {
         setText(event.target.value);
     };
-
-    useEffect(() => {
-        chatRef.current?.scrollTo(0, chatRef.current?.scrollHeight);
-    }, []);
 
     return (
         <div className={styles.chat}>

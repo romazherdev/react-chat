@@ -1,6 +1,7 @@
 .chat {
     height: 100%;
     display: grid;
+    overflow: hidden;
     grid-template-rows: 1fr 80px;
 }
 
@@ -16,4 +17,5 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    border-top: 1px solid var(--bs-gray-700);
 }
