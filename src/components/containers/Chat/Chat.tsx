@@ -13,12 +13,12 @@ import { useMessages } from '../../../hooks';
 import styles from './Chat.module.css';
 
 export const Chat = (): JSX.Element => {
-    const chatRef = createRef<HTMLElement>();
-
+    const { user } = useContext(UserContext);
     const [text, setText] = useState('');
     const { data: messages, refetch, isFetched: messagesFetched } = useMessages();
     const { mutate: sendMessage } = useMutation(sendMessageRequest);
-    const { user } = useContext(UserContext);
+
+    const chatRef = createRef<HTMLElement>();
 
     useEffect(() => {
         if (messagesFetched) {
@@ -28,14 +28,8 @@ export const Chat = (): JSX.Element => {
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
-        sendMessage({
-            text,
-            timestamp: Date.now(),
-            author: {
-                id: user.id,
-                username: user.username,
-            },
-        });
+        const author = { id: user.id, username: user.username };
+        sendMessage({ text, author });
         setText('');
         refetch();
     };
