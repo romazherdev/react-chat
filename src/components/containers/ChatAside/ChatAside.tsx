@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import { useMutation } from '@tanstack/react-query';
@@ -8,7 +8,7 @@ import { UserContext } from '../../../contexts/UserContext';
 import { useMembers } from '../../../hooks';
 
 import styles from './ChatAside.module.css';
-import MemberList from '../MemberList/MemberList';
+import MemberList from '../../UI/MemberList/MemberList';
 
 const ChatAside = (): JSX.Element => {
     const { data: members } = useMembers();
@@ -28,7 +28,7 @@ const ChatAside = (): JSX.Element => {
                 <Button type="button" variant="danger" onClick={handleLogout}>Logout</Button>
             </header>
 
-            {members ? <MemberList members={members} /> : null}
+            {members ? <MemberList user={user} members={members} /> : null}
         </aside>
     );
 }

@@ -1,16 +1,14 @@
-import { useContext, useEffect, useState } from 'react';
-import { UserContext } from '../../../contexts/UserContext';
+import { useEffect, useState } from 'react';
 import { User } from '../../../models';
 import MemberListItem from '../MemberListItem/MemberListItem';
 import styles from './MemberList.module.css';
 
 export interface MemberListProps {
-    // should be a separate interface instead of User
     members: User[];
+    user: User;
 }
 
-export const MemberList = ({ members }: MemberListProps): JSX.Element => {
-    const { user } = useContext(UserContext);
+export const MemberList = ({ members, user }: MemberListProps): JSX.Element => {
     const [sortedMembers, setSortedMembers] = useState<User[]>([]);
 
     useEffect(() => {

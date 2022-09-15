@@ -1,5 +1,5 @@
-import ChatAside from '../../UI/ChatAside/ChatAside';
-import Chat from '../../UI/Chat/Chat';
+import Chat from '../../containers/Chat/Chat';
+import ChatAside from '../../containers/ChatAside/ChatAside';
 
 import styles from './HomePage.module.css';
 
